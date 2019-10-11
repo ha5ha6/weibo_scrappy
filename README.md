@@ -2,7 +2,7 @@
 
 ## step 1: download weibo content
 
-run weibotest.py 
+run weibo_scrapy.py 
 
 download content as weibocontent.txt
 
@@ -152,12 +152,8 @@ plt.savefig('frequency_zhuanfa.png',dpi=350)
 
 ### 5. extract hashtag, https, content fr specific source id
 
-generate processed_fineorigin.txt
+run extract.py
 
 generate report_hashtag.txt, frequency_hashtag.png (piechart)
 
-generate report_http.txt
-
-
-
-
+generate extract_keyword.txt
