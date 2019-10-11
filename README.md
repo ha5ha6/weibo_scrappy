@@ -76,10 +76,28 @@ plt.savefig('frequency_zhuanfa.png',dpi=350)
 
 ### 2. extract rough origin
 
-remove 转发的微博，赞[0]，[组图共？张]
+run txtproc_roughorigin.py
 
-remain [自己可见]，hashtag，https，表情，显示地图
+remove 转发的微博, 赞[0], [组图共？张]
 
-### 3. extract fine origin
+remain [自己可见], hashtag, https, 表情, 显示地图
+
+generate processed_roughorigin.txt
+
+### 3. extract fine origin, hashtag, https
+
+run txtproc_fineorigin.py
+
+remove everything in [], including [], 显示地图, 分享图片 using re
+
+extract hashtag, https
+
+generate processed_fineorigin.txt
+
+generate report_hashtag.txt, frequency_hashtag.png (piechart)
+
+generate report_http.txt
+
+
 
 
