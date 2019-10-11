@@ -26,10 +26,10 @@ remain [自己可见], hashtag, https, 表情, 显示地图
 
 generate processed_roughorigin.txt
 
+```python
 fread=codecs.open('weibocontent.txt',encoding='utf-8')
 fwrite = codecs.open('processed_roughorigin.txt', 'w',encoding='utf-8')
 
-```python
 try:
     for i,line in enumerate(fread):
         text = line.strip()
