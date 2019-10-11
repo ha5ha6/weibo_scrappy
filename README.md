@@ -1,8 +1,4 @@
 ## weibo_scrappy
-based on 
-https://github.com/dingmyu/weibo_analysis 
-and
-https://www.cnblogs.com/dmyu/p/6034634.html
 
 ## step 1: download weibo content
 
