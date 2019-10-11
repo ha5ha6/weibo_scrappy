@@ -90,7 +90,7 @@ for line in fread.readlines():
             c[w] += 1
 ```
 
-generate frequency.png show top 20 in piechart
+generate frequency.png showing top 20 in piechart
 
 <img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_stopword.png" alt="drawing" width="600"/>
 
