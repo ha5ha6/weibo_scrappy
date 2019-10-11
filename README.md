@@ -124,7 +124,7 @@ for line in fread.readlines():
     word=jieba.cut(line)
     word=[w for w in word if w not in stopwords]
     for w in word:
-        if len(w)>1 and x != '\r\n':
+        if len(w)>1 and w != '\r\n':
             c[w] += 1
 ```
 
