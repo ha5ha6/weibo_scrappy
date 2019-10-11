@@ -26,6 +26,26 @@ remain [自己可见], hashtag, https, 表情, 显示地图
 
 generate processed_roughorigin.txt
 
+fread=codecs.open('weibocontent.txt',encoding='utf-8')
+fwrite = codecs.open('processed_roughorigin.txt', 'w',encoding='utf-8')
+
+```python
+try:
+    for i,line in enumerate(fread):
+        text = line.strip()
+        pos1 = 0
+        if("转发了" not in text and "原图" not in text and "赞[" not in text and "转发理由" not in text):
+            pos2 = len(text)
+            if(-1 != text.find("[组图共")):
+                pos2 = text.find("[组图共")
+
+            content = text[pos1 : pos2]
+            fwrite.write(content + '\r\n')
+finally:
+    fread.close()
+    fwrite.close()
+```
+
 ### 2. extract fine origin
 
 run txtproc_fineorigin.py
