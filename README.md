@@ -162,3 +162,7 @@ generate extract_keyword.txt
 
 <img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_inrange_%E6%A2%A6.png" alt="hash" width="600"/>
 
+## extension:
+
+Python 文本数据分析初学指南
+https://datartisan.gitbooks.io/begining-text-mining-with-python/
