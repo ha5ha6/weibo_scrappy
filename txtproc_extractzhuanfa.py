@@ -37,12 +37,26 @@ c = Counter()
 for zf in zhuanfaer:
     c[zf] += 1
 
-#for (k,v) in c.most_common(1000):
-#    print(k,v)
-
 try:
     for k,v in sorted(c.items(), key=lambda x: x[1],reverse=True):
         freport.write(k+':'+str(v) + '\r\n')
 
 finally:
     freport.close()
+
+#show piechart
+#should set up SimHei
+
+size=[]
+labels=[]
+for (k,v) in c.most_common(20):
+    #print(k,v)
+    size.append(v)
+    labels.append(k)
+
+#print(size)
+#print(labels)
+plt.rcParams['font.sans-serif']=['SimHei']
+plt.pie(size, labels=labels,autopct='%1.1f%%')
+plt.axis('equal')
+plt.savefig('frequency_zhuanfa.png',dpi=350)
