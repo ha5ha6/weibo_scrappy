@@ -16,7 +16,67 @@ notice: chrome version and chrome drive version should match
 
 ## step 2: text processing
 
-### 1. extract 转发 
+### 1. extract rough origin
+
+run txtproc_roughorigin.py
+
+remove 转发的微博, 赞[0], [组图共？张]
+
+remain [自己可见], hashtag, https, 表情, 显示地图
+
+generate processed_roughorigin.txt
+
+### 2. extract fine origin
+
+run txtproc_fineorigin.py
+
+require lib: re
+
+remove everything in [], including [表情/好友圈可见/自己可见/密友可见/地点], 显示地图, 分享图片 using re
+
+```python
+fread=codecs.open('processed_roughorigin.txt',encoding='utf-8')
+fwrite = codecs.open('processed_fineorigin.txt', 'w',encoding='utf-8')
+
+pattern1 = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
+pattern2 = re.compile(r'分享图片')
+pattern3 = re.compile(r'显示地图')
+
+content=re.sub(u"\\[.*?]","",text) #remove []
+content=re.sub(u"\\#.*?#","",text) #remove ##
+content=re.sub(pattern1, "",content) #remove http
+content=re.sub(pattern2,"",content) #remove '分享图片'
+content=re.sub(pattern3,"",content) #remove '显示地图'
+```
+
+generate processed_fineorigin.txt
+
+### 3. generate word frequency
+
+run frequency.py
+
+require lib: jieba, stopword.txt
+
+```python
+fread=codecs.open('processed_fineorigin.txt',encoding='utf-8')
+stopwords = [line.strip() for line in open('stopword.txt', 'r', encoding='utf-8').readlines()]
+
+c=Counter()
+for line in fread.readlines():
+    word=jieba.cut(line)
+    word=[w for w in word if w not in stopwords]
+    for w in word:
+        if len(w)>1 and w != '\r\n':
+            c[w] += 1
+```
+
+generate frequency.png show top 20 in piechart
+
+<img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_stpword.png" alt="drawing" width="600"/>
+
+<!--- ![alt text](https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_stpword.png) --->
+
+### 4. extract 转发 
 
 run txtproc_extractzhuanfa.py
 
@@ -73,66 +133,6 @@ plt.pie(size, labels=labels,autopct='%1.1f%%')
 plt.axis('equal')
 plt.savefig('frequency_zhuanfa.png',dpi=350)
 ```
-
-### 2. extract rough origin
-
-run txtproc_roughorigin.py
-
-remove 转发的微博, 赞[0], [组图共？张]
-
-remain [自己可见], hashtag, https, 表情, 显示地图
-
-generate processed_roughorigin.txt
-
-### 3. extract fine origin
-
-run txtproc_fineorigin.py
-
-require lib: re
-
-remove everything in [], including [表情/好友圈可见/自己可见/密友可见/地点], 显示地图, 分享图片 using re
-
-```python
-fread=codecs.open('processed_roughorigin.txt',encoding='utf-8')
-fwrite = codecs.open('processed_fineorigin.txt', 'w',encoding='utf-8')
-
-pattern1 = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
-pattern2 = re.compile(r'分享图片')
-pattern3 = re.compile(r'显示地图')
-
-content=re.sub(u"\\[.*?]","",text) #remove []
-content=re.sub(u"\\#.*?#","",text) #remove ##
-content=re.sub(pattern1, "",content) #remove http
-content=re.sub(pattern2,"",content) #remove '分享图片'
-content=re.sub(pattern3,"",content) #remove '显示地图'
-```
-
-generate processed_fineorigin.txt
-
-### 4. extract fine origin, generate word frequency
-
-run frequency.py
-
-require lib: jieba, stopword.txt
-
-```python
-fread=codecs.open('processed_fineorigin.txt',encoding='utf-8')
-stopwords = [line.strip() for line in open('stopword.txt', 'r', encoding='utf-8').readlines()]
-
-c=Counter()
-for line in fread.readlines():
-    word=jieba.cut(line)
-    word=[w for w in word if w not in stopwords]
-    for w in word:
-        if len(w)>1 and w != '\r\n':
-            c[w] += 1
-```
-
-generate frequency.png show top 20 in piechart
-
-<img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_stpword.png" alt="drawing" width="600"/>
-
-<!--- ![alt text](https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_stpword.png) --->
 
 ### 5. extract hashtag, https, content fr specific source id
 
