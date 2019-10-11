@@ -160,7 +160,11 @@ generate extract_keyword.txt
 
 <img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_hashtag.png" alt="hash" width="600"/>
 
-<img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_inrange_%E6%A2%A6.png" alt="hash" width="600"/>
+<img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_inrange_%E6%A2%A6.png" alt="dream" width="600"/>
+
+<img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_inrange_%E6%98%BE%E7%A4%BA%E5%9C%B0%E5%9B%BE.png" alt="places" width="600"/>
+
+<img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_spot40.png" alt="bar" width="600"/>
 
 ## extension:
 
