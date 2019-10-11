@@ -6,7 +6,7 @@ import sys
 import codecs
 
 fread=codecs.open('weibocontent.txt',encoding='utf-8')
-fwrite = codecs.open('processed_rough.txt', 'w',encoding='utf-8')
+fwrite = codecs.open('processed_roughorigin.txt', 'w',encoding='utf-8')
 
 try:
     for i,line in enumerate(fread):
