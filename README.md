@@ -123,12 +123,14 @@ c=Counter()
 for line in fread.readlines():
     word=jieba.cut(line)
     word=[w for w in word if w not in stopwords]
-    for x in word:
-        if len(x)>1 and x != '\r\n':
-            c[x] += 1
+    for w in word:
+        if len(w)>1 and x != '\r\n':
+            c[w] += 1
 ```
 
 generate frequency.png show top 20 in piechart
+
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/ic
 
 ### 5. extract hashtag, https, content fr specific source id
 
