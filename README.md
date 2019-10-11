@@ -130,7 +130,9 @@ for line in fread.readlines():
 
 generate frequency.png show top 20 in piechart
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/ic
+<img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_stpword.png" alt="drawing" width="600"/>
+
+<!--- ![alt text](https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_stpword.png) --->
 
 ### 5. extract hashtag, https, content fr specific source id
 
