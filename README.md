@@ -74,3 +74,12 @@ plt.axis('equal')
 plt.savefig('frequency_zhuanfa.png',dpi=350)
 ```
 
+### 2. extract rough origin
+
+remove 转发的微博，赞[0]，[组图共？张]
+
+remain [自己可见]，hashtag，https，表情，显示地图
+
+### 3. extract fine origin
+
+
