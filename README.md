@@ -75,7 +75,7 @@ generate processed_fineorigin.txt
 
 run frequency.py
 
-require lib: jieba, stopword.txt
+require lib: jieba, stopword.txt, python3 font SimHei setup with matplotlib
 
 ```python
 fread=codecs.open('processed_fineorigin.txt',encoding='utf-8')
