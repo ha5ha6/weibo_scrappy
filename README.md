@@ -157,3 +157,8 @@ run extract.py
 generate report_hashtag.txt, frequency_hashtag.png (piechart)
 
 generate extract_keyword.txt
+
+<img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_hashtag.png" alt="hash" width="600"/>
+
+<img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_inrange_%E6%A2%A6.png" alt="hash" width="600"/>
+
