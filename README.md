@@ -4,13 +4,16 @@ https://github.com/dingmyu/weibo_analysis
 and
 https://www.cnblogs.com/dmyu/p/6034634.html
 
-## step 1: run weibotest.py 
+## step 1: download weibo content
 
-download weibocontent as weibocontent.txt
+run weibotest.py 
+
+download content as weibocontent.txt
 
 required lib: python selenium
 
-notice: chrome version and chrome drive version
+notice: chrome version and chrome drive version should match
 
+## step 2: text processing
 
-## step 2:
+remove 
