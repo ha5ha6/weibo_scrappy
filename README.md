@@ -16,4 +16,13 @@ notice: chrome version and chrome drive version should match
 
 ## step 2: text processing
 
-remove 
+### extract 转发 
+
+run txtproc_extractzhuanfa.py
+
+generate processed_zhuanfa.txt
+
+generate report_zhuanfa.txt showing sorted zhuanfa source id in frequency
+
+generate frequency_zhuanfa.png showing pie chart
+
