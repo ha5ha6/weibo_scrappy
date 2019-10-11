@@ -119,10 +119,7 @@ def generate_pie_inrange(keyword,filterfile,stop=True,filter=True,report=True):
 
     plt.clf()
 
-    plt.barh(labels[:40],size[:40])      # 从下往上画
-    #for x, y in enumerate(price):
-    #    plt.text(y + 0.2, x - 0.1, '%s' % y)
-    #plt.show()
+    plt.barh(labels[:40],size[:40])  
     plt.savefig('frequency_inrangebar_'+keyword+'.png',dpi=350)
 
 
