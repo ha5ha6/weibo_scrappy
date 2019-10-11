@@ -92,7 +92,7 @@ for line in fread.readlines():
 
 generate frequency.png show top 20 in piechart
 
-<img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_stpword.png" alt="drawing" width="600"/>
+<img src="https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_stopword.png" alt="drawing" width="600"/>
 
 <!--- ![alt text](https://github.com/ha5ha6/weibo_scrappy/blob/master/frequency_stpword.png) --->
 
