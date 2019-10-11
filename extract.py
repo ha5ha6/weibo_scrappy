@@ -6,11 +6,12 @@ import sys
 import codecs
 from collections import Counter
 import matplotlib.pyplot as plt
+import jieba
 
 def extract_keyword(source,keyword):
 
     fread=codecs.open(source,encoding='utf-8')
-    fwrite = codecs.open('extract_'+keyword+'.txt', 'w',encoding='utf-8')
+    fwrite=codecs.open('extract_'+keyword+'.txt', 'w',encoding='utf-8')
 
     try:
         cnt=0
@@ -85,6 +86,37 @@ def extract_hashtag(source,keyword):
     plt.axis('equal')
     plt.savefig('frequency_hashtag.png',dpi=350)
 
+def generate_pie_inrange(keyword,stop=True,filter=True):
+
+    fread=codecs.open('extract_'+keyword+'.txt',encoding='utf-8')
+
+    if filter:
+        filterword=[line.strip() for line in open('filter.txt', 'r', encoding='utf-8').readlines()]
+
+    if stop:
+        stopwords = [line.strip() for line in open('stopword.txt', 'r', encoding='utf-8').readlines()]
+
+    c=Counter()
+    for line in fread.readlines():
+        word=jieba.cut(line)
+        word=[w for w in word if w not in stopwords]
+        word=[w for w in word if w not in filterword]
+        for x in word:
+            if len(x)>1 and x != '\r\n':
+                c[x] += 1
+
+    size=[]
+    labels=[]
+    for (k,v) in c.most_common(20):
+        #print(k,v)
+        size.append(v)
+        labels.append(k)
+
+    plt.rcParams['font.sans-serif']=['SimHei']
+    plt.pie(size, labels=labels,autopct='%1.1f%%')
+    plt.axis('equal')
+    plt.savefig('frequency_inrange_'+keyword+'.png',dpi=350)
+
 source_raw='weibocontent.txt'
 source_rough='processed_roughorigin.txt'
 source_fine='processed_fineorigin.txt'
@@ -93,4 +125,7 @@ extract_keyword(source_raw,'爱可可-爱生活')
 extract_keyword(source_raw,'http')
 #extract_keyword(source_raw,'删除')
 extract_keyword(source_rough,'显示地图')
+extract_keyword(source_fine,'梦')
+generate_pie_inrange('梦')
+
 extract_hashtag(source_rough,'hashtags')
