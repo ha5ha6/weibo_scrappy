@@ -86,12 +86,12 @@ def extract_hashtag(source,keyword):
     plt.axis('equal')
     plt.savefig('frequency_hashtag.png',dpi=350)
 
-def generate_pie_inrange(keyword,stop=True,filter=True):
+def generate_pie_inrange(keyword,filterfile,stop=True,filter=True,report=True):
 
     fread=codecs.open('extract_'+keyword+'.txt',encoding='utf-8')
 
     if filter:
-        filterword=[line.strip() for line in open('filter.txt', 'r', encoding='utf-8').readlines()]
+        filterword=[line.strip() for line in open(filterfile, 'r', encoding='utf-8').readlines()]
 
     if stop:
         stopwords = [line.strip() for line in open('stopword.txt', 'r', encoding='utf-8').readlines()]
@@ -107,7 +107,7 @@ def generate_pie_inrange(keyword,stop=True,filter=True):
 
     size=[]
     labels=[]
-    for (k,v) in c.most_common(20):
+    for (k,v) in c.most_common(40):
         #print(k,v)
         size.append(v)
         labels.append(k)
@@ -117,15 +117,35 @@ def generate_pie_inrange(keyword,stop=True,filter=True):
     plt.axis('equal')
     plt.savefig('frequency_inrange_'+keyword+'.png',dpi=350)
 
+    plt.clf()
+
+    plt.barh(labels[:40],size[:40])      # 从下往上画
+    #for x, y in enumerate(price):
+    #    plt.text(y + 0.2, x - 0.1, '%s' % y)
+    #plt.show()
+    plt.savefig('frequency_inrangebar_'+keyword+'.png',dpi=350)
+
+
+    if report:
+        freport=codecs.open('report_'+keyword+'.txt', 'w',encoding='utf-8')
+
+        try:
+            for k,v in sorted(c.items(), key=lambda x: x[1],reverse=True):
+                freport.write(k+':'+str(v) + '\r\n')
+
+        finally:
+            freport.close()
+
 source_raw='weibocontent.txt'
 source_rough='processed_roughorigin.txt'
 source_fine='processed_fineorigin.txt'
 
-extract_keyword(source_raw,'爱可可-爱生活')
-extract_keyword(source_raw,'http')
+#extract_keyword(source_raw,'爱可可-爱生活')
+#extract_keyword(source_raw,'http')
 #extract_keyword(source_raw,'删除')
 extract_keyword(source_rough,'显示地图')
-extract_keyword(source_fine,'梦')
-generate_pie_inrange('梦')
+generate_pie_inrange('显示地图','filter.txt')
+#extract_keyword(source_fine,'梦')
+#generate_pie_inrange('梦','filter.txt')
 
-extract_hashtag(source_rough,'hashtags')
+#extract_hashtag(source_rough,'hashtags')
